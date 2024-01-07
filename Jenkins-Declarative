@@ -1,59 +1,47 @@
 pipeline{
-    agent any
-    tools { 
+      agent any 
+      tools {
+           maven "maven3.9.5"
+}
 
-         maven "maven"
-
+stages{
+      stage('scmclone'){
+          sh "echo 'this is declarative pipeline' "
+          git credentialsId: 'PAT', url: 'https://github.com/isaac-liontech/liontech-online-library-web-app.git'
+}
 }
 
 
 
-stages {
-
-     stage('pullfromscm'){
-       steps{
-           sh "echo 'cloning the lastest comming from application source code'  "
-           git branch: '', credentialsId: 'PAT', url: 'https://github.com/isaac-liontech/liontech-online-library-web-app.git'
-}
-
-}
-         
-}
 
 
-    stage('2TestandBuild'){
-       steps{
-           sh "echo 'developers first build'"
-           sh "echo 'jenkins building applicatio with maven '"
-           sh "mvn clean package"
 
-} 
-}
 
-stage('sonarqubeanalysis'){
-    steps {      
-       sh "echo 'performing application or software code analysis'"
-       sh "mvn sonar:sonar"
-}
 
-}
 
-stage('uploadNexus'){
-    steps{
-        sh "mvn deploy"
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
-
-stage ('deploytomcat'){
-    steps{
-      deploy adapters: [tomcat9(credentialsId: 'jenkins-project', path: '', url: 'http://44.203.159.32:8009/')], contextPath: 'online-library', war: 'target/*.war'
-}
-
-}
-
-}
-
 
 
 
