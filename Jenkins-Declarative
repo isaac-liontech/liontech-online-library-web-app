@@ -27,6 +27,11 @@ stages{
 
 }
 
+     stage('deplotonexus'){
+         steps{
+            sh "mvn deploy"
+}
+}
 
  
 }
