@@ -6,8 +6,12 @@ pipeline{
 
 stages{
       stage('scmclone'){
-          sh "echo 'this is declarative pipeline' "
-          git credentialsId: 'PAT', url: 'https://github.com/isaac-liontech/liontech-online-library-web-app.git'
+          steps{
+              sh "echo 'this is declarative pipeline'"
+              git credentialsId: 'PAT', url: 'https://github.com/isaac-liontech/liontech-online-library-web-app.git'
+
+} 
+     
 }
 }
 
