@@ -33,6 +33,13 @@ stages{
 }
 }
 
+     stage('tomcat'){
+         steps{
+         deploy adapters: [tomcat9(credentialsId: 'jenkins-project', path: '', url: 'http://54.197.39.106:8009/')], contextPath: 'Declarative', war: 'target/*.war'
+}
+}
+
+
  
 }
 
